@@ -3,9 +3,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { fileURLToPath, URL } from 'node:url'
 
-// three / r3f / drei are only reached through dynamic import(),
-// so Rollup already splits them out of the entry chunk.
 export default defineConfig({
+  base: '/coffee-brand/',
   plugins: [react()],
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
@@ -13,7 +12,6 @@ export default defineConfig({
   build: {
     target: 'es2022',
     modulePreload: { polyfill: false },
-    // The lazy 3D chunk (three + r3f + drei) is ~250 KB gzip by design.
     chunkSizeWarningLimit: 1000,
   },
   test: {

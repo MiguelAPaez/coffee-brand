@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { Route, Switch } from 'wouter'
+import { Route, Switch, useLocation } from 'wouter'
 import { Home } from '@/pages/Home'
 import { NotFound } from '@/pages/NotFound'
 import { useScrollRestoration } from '@/lib/scrollMemory'
@@ -15,8 +15,15 @@ const Article = lazy(() => import('@/pages/Article').then((m) => ({ default: m.A
 const Cart = lazy(() => import('@/pages/Cart').then((m) => ({ default: m.Cart })))
 const Checkout = lazy(() => import('@/pages/Checkout').then((m) => ({ default: m.Checkout })))
 const Confirmed = lazy(() => import('@/pages/Confirmed').then((m) => ({ default: m.Confirmed })))
+const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, '')
+
+export function appPath(path: string): string {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '')
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`
+}
 
 export function AppRoutes() {
+  useLocation()[1]
   useScrollRestoration()
   return (
     <Suspense fallback={null}>

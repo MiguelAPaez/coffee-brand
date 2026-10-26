@@ -9,15 +9,5 @@ export default defineConfig({
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },
-  build: {
-    target: 'es2022',
-    modulePreload: { polyfill: false },
-    chunkSizeWarningLimit: 1000,
-  },
-  test: {
-    environment: 'jsdom',
-    globals: true,
-    setupFiles: ['src/test/setup.ts'],
-    include: ['src/**/*.test.{ts,tsx}'],
-  },
+  test: { environment: 'node', include: ['src/**/*.test.ts'] },
 })

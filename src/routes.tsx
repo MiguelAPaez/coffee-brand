@@ -19,7 +19,6 @@ const Confirmed = lazy(() => import('@/pages/Confirmed').then((m) => ({ default:
 const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, '')
 
 export function AppRoutes() {
-  useLocation()[1]
   useScrollRestoration()
   return (
     <Router base={BASE_PATH}>

@@ -15,32 +15,30 @@ const Article = lazy(() => import('@/pages/Article').then((m) => ({ default: m.A
 const Cart = lazy(() => import('@/pages/Cart').then((m) => ({ default: m.Cart })))
 const Checkout = lazy(() => import('@/pages/Checkout').then((m) => ({ default: m.Checkout })))
 const Confirmed = lazy(() => import('@/pages/Confirmed').then((m) => ({ default: m.Confirmed })))
-const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, '')
 
-export function appPath(path: string): string {
-  const base = import.meta.env.BASE_URL.replace(/\/$/, '')
-  return `${base}${path.startsWith('/') ? path : `/${path}`}`
-}
+const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, '')
 
 export function AppRoutes() {
   useLocation()[1]
   useScrollRestoration()
   return (
+    <Router base={BASE_PATH}>
     <Suspense fallback={null}>
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/origin" component={Origin} />
-        <Route path="/process" component={Process} />
-        <Route path="/roasts" component={Roasts} />
-        <Route path="/roasts/:slug" component={RoastDetail} />
-        <Route path="/visit" component={Visit} />
-        <Route path="/journal" component={Journal} />
-        <Route path="/journal/:slug" component={Article} />
-        <Route path="/cart" component={Cart} />
-        <Route path="/checkout" component={Checkout} />
-        <Route path="/checkout/confirmed" component={Confirmed} />
-        <Route component={NotFound} />
-      </Switch>
-    </Suspense>
+        <Switch>
+          <Route path="/" component={Home} />
+          <Route path="/origin" component={Origin} />
+          <Route path="/process" component={Process} />
+          <Route path="/roasts" component={Roasts} />
+          <Route path="/roasts/:slug" component={RoastDetail} />
+          <Route path="/visit" component={Visit} />
+          <Route path="/journal" component={Journal} />
+          <Route path="/journal/:slug" component={Article} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/checkout/confirmed" component={Confirmed} />
+          <Route component={NotFound} />
+        </Switch>
+      </Suspense>
+    </Router>
   )
 }

@@ -1,5 +1,4 @@
 import { ROASTS } from '@/content/roasts'
-import { appPath } from './routes'
 
 /** Swap these to point at your own footage (see README for CORS requirements). */
 export const VIDEO_URL = `${import.meta.env.BASE_URL}video/descent-desktop.mp4`
@@ -51,11 +50,11 @@ export function pickVideoUrl(): string {
 }
 
 export const NAV = [
-  { label: 'Origin', href: appPath('/origin') },
-  { label: 'Process', href: appPath('/process') },
-  { label: 'Roasts', href: appPath('/roasts') },
-  { label: 'Visit', href: appPath('/visit') },
-  { label: 'Journal', href: appPath('/journal') },
+  { label: 'Origin', href: '/origin' },
+  { label: 'Process', href: '/process' },
+  { label: 'Roasts', href: '/roasts' },
+  { label: 'Visit', href: '/visit' },
+  { label: 'Journal', href: '/journal' },
 ] as const
 
 /** Home shows the flagship roast; its data lives in content/roasts. */

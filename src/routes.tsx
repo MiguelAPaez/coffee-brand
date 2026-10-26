@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { Route, Switch, useLocation } from 'wouter'
+import { Route, Router, Switch } from 'wouter'
 import { Home } from '@/pages/Home'
 import { NotFound } from '@/pages/NotFound'
 import { useScrollRestoration } from '@/lib/scrollMemory'
